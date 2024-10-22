@@ -2,6 +2,8 @@ material.lapotron.name=蓝波顿
 material.almandine.name=铁铝榴石
 material.pyrope.name=镁铝榴石
 material.grossular.name=钙铝榴石
+material.spessartine.name=锰铝榴石
+material.uvarovite.name=钙铬榴石
 material.sodalite.name=方钠石
 material.lazurite.name=蓝金石
 
@@ -50,6 +52,9 @@ material.hypogen.name=海珀珍
 material.celestial_tungsten.name=天体钨
 material.rhugnor.name=鲁格诺
 material.magneto_hydrodynamically_constrained_star_matter.name=磁流体动力学约束恒星等离子体物质
+material.spacetime.name=时空
+material.eternity.name=永恒
+material.solarium.name=阳光合金
 material.nitinol.name=镍钛诺合金
 material.inconel_625.name=镍基合金-625
 
@@ -95,6 +100,19 @@ material.superheavy_h_alloy.name=超重元素-重合金
 material.superheavy_l_alloy.name=超重元素-轻合金
 material.platinum_group_alloy.name=稀有金属合金
 
+material.kevlar.name=凯夫拉
+material.polyetheretherketone.name=聚芳醚酮
+material.polybenzimidazole.name=聚苯并咪唑
+material.zylon.name=柴隆纤维
+
+material.americium.name=镅
+material.lutetium.name=镥
+material.europium.name=铕
+
+material.syrmorite.name=赛摩铜
+material.octine.name=炽焰铁
+material.scabyst.name=痂壳晶
+material.valonite.name=法罗钠
 
 modifier.gravitation.name=万象天引
 modifier.gravitation.desc=§o引力操纵！§r\n自动吸引物品，右键弹开周围的生物，潜行右键吸引周围的生物。
