@@ -5,10 +5,7 @@ import cn.gtcommunity.gregtinker.material.MaterialDefinition;
 import cn.gtcommunity.gregtinker.village.CustomVillageStructures;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 
 @Mod(
         modid = GregTinker.MODID,
@@ -45,15 +42,19 @@ public class GregTinker
     public void init(FMLInitializationEvent event)
     {
         proxy.onInit(event);
+        proxy.init();
         CustomVillageStructures.registerVillageComponents();
+    }
+    @Mod.EventHandler
+    public void loadComplete(FMLLoadCompleteEvent event) {
+        proxy.loadComplete();
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-
+        proxy.postInit();
     }
-
     @Mod.EventHandler
     public void onImcReceived(FMLInterModComms.IMCEvent event)
     {
