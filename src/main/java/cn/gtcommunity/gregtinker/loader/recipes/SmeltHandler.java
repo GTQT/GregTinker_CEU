@@ -17,11 +17,9 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 
 public class SmeltHandler {
     public static void init() {
-        GTQTLog.logger.info("Removing Smelting Recipes for Materials with Blast Temperature >= 1200");
         Collection<Material> materials = GregTechAPI.materialManager.getRegisteredMaterials();
         for (Material material : materials) {
-            if (material != null && material.hasFluid() && material.getBlastTemperature() >= 1200) {
-                GTQTLog.logger.info("remove now!");
+            if (material != null && material.hasFluid() && material.getBlastTemperature() >= 1000) {
                 removeRecipesForMaterial(material);
             }
         }
