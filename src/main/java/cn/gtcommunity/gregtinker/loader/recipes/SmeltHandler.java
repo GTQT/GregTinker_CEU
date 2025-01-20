@@ -4,7 +4,6 @@ import com.cleanroommc.groovyscript.core.mixin.tconstruct.TinkerRegistryAccessor
 import gregtech.api.GregTechAPI;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
-import keqing.gtqtcore.api.utils.GTQTLog;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
