@@ -3,6 +3,7 @@ package cn.gtcommunity.gregtinker.common;
 import cn.gtcommunity.gregtinker.api.capability.GTCapabilities;
 import cn.gtcommunity.gregtinker.api.utils.GTiLog;
 import cn.gtcommunity.gregtinker.handler.ToolCapabilityHandler;
+import cn.gtcommunity.gregtinker.loader.recipes.CastingHandler;
 import cn.gtcommunity.gregtinker.loader.recipes.SmeltHandler;
 import cn.gtcommunity.gregtinker.material.GTinkerMaterials;
 import cn.gtcommunity.gregtinker.material.MaterialDefinition;
@@ -55,5 +56,6 @@ public class CommonProxy
 
     public void postInit() {
         SmeltHandler.init();
+        CastingHandler.init();
     }
 }
