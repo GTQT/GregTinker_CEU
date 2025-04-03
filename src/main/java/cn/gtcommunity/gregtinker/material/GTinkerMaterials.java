@@ -18,8 +18,22 @@ import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.tools.TinkerMaterials;
 import slimeknights.tconstruct.tools.TinkerTraits;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class GTinkerMaterials
 {
+    //总材料
+    public static final List<Material> MATERIALS = new ArrayList<>();
+    //弓弦材料
+    public static final List<Material> BOWSTRING_MATERIALS = new ArrayList<>();
+    //熔融材料
+    public static final List<Material> FLETCHING_MATERIALS = new ArrayList<>();
+
+    public static final Map<Material, Integer> TIER = new HashMap<>();
+
     public static Material LAPOTRON;
     public static Material ALMANDINE;
     public static Material PYROPE;
@@ -481,7 +495,7 @@ public class GTinkerMaterials
         //GTQT
         //海珀珍
         HYPOGEN = new MaterialBuilder("hypogen", 0xDC784B, MaterialForm.METAL, "Hypogen")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHypogen")
                 .setCastable(() -> GTQTMaterials.Hypogen.getFluid(), 9000)
                 .withStatsHead(32000, 15F, 12F, 12)
@@ -492,7 +506,7 @@ public class GTinkerMaterials
                 .build();
         //天体钨
         CELESTIAL_TUNGSTEN = new MaterialBuilder("celestial_tungsten", 0x323232, MaterialForm.METAL, "CelestialTungsten")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotCelestialTungsten")
                 .setCastable(() -> GTQTMaterials.CelestialTungsten.getFluid(), 8000)
                 .withStatsHead(24000, 10F, 8F, 12)
@@ -503,7 +517,7 @@ public class GTinkerMaterials
                 .build();
         //鲁伯特
         RHUGNOR = new MaterialBuilder("rhugnor", 0xBE00FF, MaterialForm.METAL, "Rhugnor")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotRhugnor")
                 .setCastable(() -> GTQTMaterials.Rhugnor.getFluid(), 7000)
                 .withStatsHead(11000, 13F, 8F, 12)
@@ -515,7 +529,7 @@ public class GTinkerMaterials
 
         //磁动力流体
         MAGNETO_HYDRODYNAMICALLY_CONSTRAINED_STAR_MATTER = new MaterialBuilder("magneto_hydrodynamically_constrained_star_matter", 0xFFA500, MaterialForm.METAL, "MagnetoHydrodynamicallyConstrainedStarMatter")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotMagnetoHydrodynamicallyConstrainedStarMatter")
                 .setCastable(() -> GTQTMaterials.MagnetoHydrodynamicallyConstrainedStarMatter.getFluid(), 8000)
                 .withStatsHead(36000, 12F, 8F, 10)
@@ -528,7 +542,7 @@ public class GTinkerMaterials
 
         //阳光合金
         SOLARIUM = new MaterialBuilder("solarium", 0xFFEC8B, MaterialForm.METAL, "Solarium")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotSolarium")
                 .setCastable(() -> GTQTMaterials.Solarium.getFluid(), 7000)
                 .withStatsHead(3000, 13F, 8F, 12)
@@ -540,7 +554,7 @@ public class GTinkerMaterials
 
         //永恒
         ETERNITY = new MaterialBuilder("eternity", 0x191970, MaterialForm.METAL, "Eternity")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotEternity")
                 .setCastable(() -> GTQTMaterials.Eternity.getFluid(), 7000)
                 .withStatsHead(32000, 13F, 8F, 12)
@@ -552,7 +566,7 @@ public class GTinkerMaterials
 
         //时空
         SPACE_TIME = new MaterialBuilder("spacetime", 0x191970, MaterialForm.METAL, "Spacetime")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotSpacetime")
                 .setCastable(() -> GTQTMaterials.Spacetime.getFluid(), 8000)
                 .withStatsHead(42000, 13F, 12F, 14)
@@ -564,7 +578,7 @@ public class GTinkerMaterials
 
         //镍钛诺
         NITINOL = new MaterialBuilder("nitinol", 0x1874CD, MaterialForm.METAL, "Nitinol")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotNitinol")
                 .setCastable(() -> GTQTMaterials.Nitinol.getFluid(), 4000)
                 .withStatsHead(2500, 7F, 8F, 5)
@@ -575,7 +589,7 @@ public class GTinkerMaterials
                 .build();
         //镍基合金625
         INCONEL625  = new MaterialBuilder("inconel_625", 0x3fcc60, MaterialForm.METAL, "Inconel625")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotInconel625")
                 .setCastable(() -> GTQTMaterials.Inconel625.getFluid(), 7000)
                 .withStatsHead(5400, 12F, 8F, 5)
@@ -586,7 +600,7 @@ public class GTinkerMaterials
                 .build();
         //镍基哈氏高温合金
         HastelloyN   = new MaterialBuilder("hastelloy_n", 0x939554, MaterialForm.METAL, "HastelloyN")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHastelloyN")
                 .setCastable(() -> GTQTMaterials.HastelloyN.getFluid(), 9000)
                 .withStatsHead(8500, 8F, 8F, 6)
@@ -597,7 +611,7 @@ public class GTinkerMaterials
                 .build();
         //司太立
         Stellite    = new MaterialBuilder("stellite", 0x939554, MaterialForm.METAL, "Stellite")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotStellite")
                 .setCastable(() -> GTQTMaterials.Stellite.getFluid(), 7000)
                 .withStatsHead(6000, 10F, 8F, 7)
@@ -608,7 +622,7 @@ public class GTinkerMaterials
                 .build();
         //HDCS
         Hdcs    = new MaterialBuilder("hdcs", 0x334433, MaterialForm.METAL, "Hdcs")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHdcs")
                 .setCastable(() -> GTQTMaterials.Hdcs.getFluid(), 8000)
                 .withStatsHead(9800, 12F, 8F, 6)
@@ -619,7 +633,7 @@ public class GTinkerMaterials
                 .build();
         //路菲恩
         Lafium    = new MaterialBuilder("lafium", 0x0D0D60, MaterialForm.METAL, "Lafium")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotLafium")
                 .setCastable(() -> GTQTMaterials.Lafium.getFluid(), 6000)
                 .withStatsHead(6500, 10F, 8F, 6)
@@ -630,7 +644,7 @@ public class GTinkerMaterials
                 .build();
         //黑钛合金
         BlackTitanium     = new MaterialBuilder("black_titanium", 0x6C003B, MaterialForm.METAL, "BlackTitanium")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotBlackTitanium")
                 .setCastable(() -> GTQTMaterials.BlackTitanium.getFluid(), 7000)
                 .withStatsHead(8700, 12F, 8F, 10)
@@ -641,7 +655,7 @@ public class GTinkerMaterials
                 .build();
         //铬钴磷酸盐合金
         Talonite = new MaterialBuilder("talonite", 0x9991A5, MaterialForm.METAL, "Talonite")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotTalonite")
                 .setCastable(() -> GTQTMaterials.Talonite .getFluid(), 9000)
                 .withStatsHead(8900, 8F, 8F, 6)
@@ -652,7 +666,7 @@ public class GTinkerMaterials
                 .build();
         //黑钚
         BlackPlutonium= new MaterialBuilder("black_plutonium", 0x060606, MaterialForm.METAL, "BlackPlutonium")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotBlackPlutonium")
                 .setCastable(() -> GTQTMaterials.BlackPlutonium  .getFluid(), 8000)
                 .withStatsHead(9100, 10F, 8F, 7)
@@ -663,7 +677,7 @@ public class GTinkerMaterials
                 .build();
         //马氏体时效钢250
         MaragingSteel250 = new MaterialBuilder("maraging_steel_250", 0xA5ADB2, MaterialForm.METAL, "MaragingSteel250")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotMaragingSteel250")
                 .setCastable(() -> GTQTMaterials.MaragingSteel250.getFluid(), 7000)
                 .withStatsHead(8700, 8F, 8F, 5)
@@ -674,7 +688,7 @@ public class GTinkerMaterials
                 .build();
         //贫铀合金
         Staballoy = new MaterialBuilder("staballoy", 0x444B42, MaterialForm.METAL, "Staballoy")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotStaballoy")
                 .setCastable(() -> GTQTMaterials.Staballoy .getFluid(), 10000)
                 .withStatsHead(9800, 8F, 8F, 5)
@@ -685,7 +699,7 @@ public class GTinkerMaterials
                 .build();
         //巴氏合金
         BabbittAlloy  = new MaterialBuilder("babbitt_alloy", 0xA19CA4, MaterialForm.METAL, "BabbittAlloy")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotBabbittAlloy")
                 .setCastable(() -> GTQTMaterials.BabbittAlloy .getFluid(), 9000)
                 .withStatsHead(7800, 10F, 8F, 6)
@@ -696,7 +710,7 @@ public class GTinkerMaterials
                 .build();
         //碳化锆
         ZirconiumCarbide = new MaterialBuilder("zirconium_carbide", 0xFFDACD, MaterialForm.METAL, "ZirconiumCarbide")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotZirconiumCarbide")
                 .setCastable(() -> GTQTMaterials.ZirconiumCarbide.getFluid(), 8000)
                 .withStatsHead(8000, 7F, 8F, 5)
@@ -707,7 +721,7 @@ public class GTinkerMaterials
                 .build();
         //镍基合金-792
         Inconel792= new MaterialBuilder("inconel_792", 0x6CF076, MaterialForm.METAL, "Inconel792")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotInconel792")
                 .setCastable(() -> GTQTMaterials.Inconel792.getFluid(), 7000)
                 .withStatsHead(9800, 7F, 8F, 4)
@@ -718,7 +732,7 @@ public class GTinkerMaterials
                 .build();
         //耐热铬铁合金-MA813
         IncoloyMA813 = new MaterialBuilder("incoloy_ma_813", 0x6CF076, MaterialForm.METAL, "IncoloyMa813")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotIncoloyMa813")
                 .setCastable(() -> GTQTMaterials.IncoloyMA813.getFluid(), 6000)
                 .withStatsHead(7500, 8F, 8F, 4)
@@ -729,7 +743,7 @@ public class GTinkerMaterials
                 .build();
         //哈斯特洛依合金-X78
         HastelloyX78= new MaterialBuilder("hastelloy_x_78", 0x6BA3E3, MaterialForm.METAL, "HastelloyX78")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHastelloyX78")
                 .setCastable(() -> GTQTMaterials.HastelloyX78.getFluid(), 9000)
                 .withStatsHead(6800, 7F, 8F, 6)
@@ -740,7 +754,7 @@ public class GTinkerMaterials
                 .build();
         //哈斯特洛依合金-K243
         HastelloyK243= new MaterialBuilder("hastelloy_k_243", 0xa4ff70, MaterialForm.METAL, "HastelloyK243")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHastelloyK243")
                 .setCastable(() -> GTQTMaterials.HastelloyK243.getFluid(), 8000)
                 .withStatsHead(8500, 7F, 8F, 5)
@@ -751,7 +765,7 @@ public class GTinkerMaterials
                 .build();
         //MAR-M200特种钢
         MARM200Steel= new MaterialBuilder("mar_m_200_steel", 0x515151, MaterialForm.METAL, "MarM200Steel")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotMarM200Steel")
                 .setCastable(() -> GTQTMaterials.MARM200Steel.getFluid(), 7000)
                 .withStatsHead(5800, 7F, 8F, 7)
@@ -762,7 +776,7 @@ public class GTinkerMaterials
                 .build();
         //MAR-Ce-M200特种钢
         MARM200CeSteel= new MaterialBuilder("mar_m_200_ce_steel", 0x383030, MaterialForm.METAL, "MarM200CeSteel")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotMarM200CeSteel")
                 .setCastable(() -> GTQTMaterials.MARM200CeSteel.getFluid(), 10000)
                 .withStatsHead(8800, 8F, 8F, 6)
@@ -773,7 +787,7 @@ public class GTinkerMaterials
                 .build();
         //钛钼合金β-C
         TanmolyiumBetaC= new MaterialBuilder("tanmolyium_beta_c", 0xc72fcc, MaterialForm.METAL, "TanmolyiumBetaC")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotTanmolyiumBetaC")
                 .setCastable(() -> GTQTMaterials.TanmolyiumBetaC.getFluid(), 8000)
                 .withStatsHead(6900, 7F, 8F, 5)
@@ -784,7 +798,7 @@ public class GTinkerMaterials
                 .build();
         //哈斯特洛依合金-C59
         HastelloyC59= new MaterialBuilder("hastelloy_c_59", 0xD6D0F0, MaterialForm.METAL, "HastelloyC59")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHastelloyC59")
                 .setCastable(() -> GTQTMaterials.HastelloyC59.getFluid(), 7000)
                 .withStatsHead(8500, 8F, 8F, 5)
@@ -795,7 +809,7 @@ public class GTinkerMaterials
                 .build();
         //高饱和磁感应软磁合金-1J79
         HMS1J79Alloy= new MaterialBuilder("hms_1_j_79_alloy", 0xD1CB0B, MaterialForm.METAL, "Hms1J79Alloy")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHms1J79Alloy")
                 .setCastable(() -> GTQTMaterials.HMS1J79Alloy.getFluid(), 9000)
                 .withStatsHead(7800, 7F, 8F, 5)
@@ -806,7 +820,7 @@ public class GTinkerMaterials
                 .build();
         //高强度结构钢HY130-1
         HY1301= new MaterialBuilder("hy_1301", 0x6F3E57, MaterialForm.METAL, "Hy1301")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHy1301")
                 .setCastable(() -> GTQTMaterials.HY1301.getFluid(), 8000)
                 .withStatsHead(7200, 7F, 8F, 8)
@@ -817,7 +831,7 @@ public class GTinkerMaterials
                 .build();
         //超级奥氏体不锈钢-904L
         AusteniticStainlessSteel904L= new MaterialBuilder("super_austenitic_stainless_steel_904_l", 0x6F3E57, MaterialForm.METAL, "AusteniticStainlessSteel904L")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotAusteniticStainlessSteel904L")
                 .setCastable(() -> GTQTMaterials.AusteniticStainlessSteel904L.getFluid(), 6000)
                 .withStatsHead(6400, 7F, 8F, 8)
@@ -828,7 +842,7 @@ public class GTinkerMaterials
                 .build();
         //埃格林钢粗胚
         EglinSteelBase= new MaterialBuilder("eglin_steel_base", 0x6F3E57, MaterialForm.METAL, "EglinSteelBase")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotEglinSteelBase")
                 .setCastable(() -> GTQTMaterials.EglinSteelBase.getFluid(), 7000)
                 .withStatsHead(6400, 7F, 8F, 5)
@@ -839,7 +853,7 @@ public class GTinkerMaterials
                 .build();
         //埃格林钢
         EglinSteel= new MaterialBuilder("eglin_steel", 0x8B4513, MaterialForm.METAL, "EglinSteel")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotEglinSteel")
                 .setCastable(() -> GTQTMaterials.EglinSteelBase.getFluid(), 6000)
                 .withStatsHead(6800, 7F, 8F, 6)
@@ -850,7 +864,7 @@ public class GTinkerMaterials
                 .build();
         //皮卡优合金-64B
         Pikyonium64B= new MaterialBuilder("pikyonium_64_b", 0x3467BA, MaterialForm.METAL, "Pikyonium64B")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotPikyonium64B")
                 .setCastable(() -> GTQTMaterials.Pikyonium64B.getFluid(), 8000)
                 .withStatsHead(7200, 10F, 8F, 8)
@@ -861,7 +875,7 @@ public class GTinkerMaterials
                 .build();
         //耐热铬铁合金-DS
         IncoloyDS= new MaterialBuilder("incoloy_ds", 0x6746B7, MaterialForm.METAL, "IncoloyDs")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotIncoloyDs")
                 .setCastable(() -> GTQTMaterials.IncoloyDS.getFluid(), 7000)
                 .withStatsHead(6400, 10F, 8F, 7)
@@ -872,7 +886,7 @@ public class GTinkerMaterials
                 .build();
         //镍基合金-690
         Inconel690= new MaterialBuilder("inconel_690", 0x4FC050, MaterialForm.METAL, "Inconel690")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotInconel690")
                 .setCastable(() -> GTQTMaterials.Inconel690.getFluid(), 8000)
                 .withStatsHead(7500, 8F, 8F,7)
@@ -883,7 +897,7 @@ public class GTinkerMaterials
                 .build();
         //钽钨合金-61
         Tantalloy61= new MaterialBuilder("tantalloy_61", 0x717171, MaterialForm.METAL, "Tantalloy61")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotTantalloy61")
                 .setCastable(() -> GTQTMaterials.Tantalloy61.getFluid(), 6000)
                 .withStatsHead(8700, 9F, 8F, 6)
@@ -894,7 +908,7 @@ public class GTinkerMaterials
                 .build();
         //耐热铬铁合金-020
         Incoloy020= new MaterialBuilder("incoloy_020", 0xF8BFFC, MaterialForm.METAL, "Incoloy020")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotIncoloy020")
                 .setCastable(() -> GTQTMaterials.Incoloy020.getFluid(), 8000)
                 .withStatsHead(7800, 8F, 8F, 8)
@@ -905,7 +919,7 @@ public class GTinkerMaterials
                 .build();
         //HG-1223
         HG1223= new MaterialBuilder("hg_1223", 0x235497, MaterialForm.METAL, "Hg1223")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHg1223")
                 .setCastable(() -> GTQTMaterials.HG1223.getFluid(), 8000)
                 .withStatsHead(4500, 8F, 8F, 8)
@@ -916,7 +930,7 @@ public class GTinkerMaterials
                 .build();
         //高饱和磁感应软磁合金-1J22
         HMS1J22Alloy= new MaterialBuilder("hms_1_j_22_alloy", 0x9E927D, MaterialForm.METAL, "Hms1J22Alloy")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotHms1J22Alloy")
                 .setCastable(() -> GTQTMaterials.HMS1J22Alloy.getFluid(), 8000)
                 .withStatsHead(8700, 8F, 8F, 8)
@@ -927,7 +941,7 @@ public class GTinkerMaterials
                 .build();
         //超重元素-重合金
         SuperheavyHAlloy= new MaterialBuilder("superheavy_h_alloy", 0xE84B36, MaterialForm.METAL, "SuperheavyHAlloy")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotSuperheavyHAlloy")
                 .setCastable(() -> GTQTMaterials.SuperheavyHAlloy.getFluid(), 10000)
                 .withStatsHead(24000, 14F, 8F, 10)
@@ -938,7 +952,7 @@ public class GTinkerMaterials
                 .build();
         //超重元素-轻合金
         SuperheavyLAlloy= new MaterialBuilder("superheavy_l_alloy", 0x4D8BE9, MaterialForm.METAL, "SuperheavyLAlloy")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotSuperheavyLAlloy")
                 .setCastable(() -> GTQTMaterials.SuperheavyLAlloy.getFluid(), 10000)
                 .withStatsHead(18000, 12F, 8F, 10)
@@ -949,7 +963,7 @@ public class GTinkerMaterials
                 .build();
         //镀锌钢
         GalvanizedSteel= new MaterialBuilder("galvanized_steel", 0xb5b5b5, MaterialForm.METAL, "GalvanizedSteel")
-                .requiresMods("gregtech")
+                .requiresMods("gtqtcore")
                 .requiresOres("ingotGalvanizedSteel")
                 .setCastable(() -> GTQTMaterials.GalvanizedSteel.getFluid(), 1800)
                 .withStatsHead(750, 7F, 8F, 3)
@@ -963,7 +977,7 @@ public class GTinkerMaterials
     private static void Thaumastic() {
         //赛摩铜
         SYRMORITE = new MaterialBuilder("syrmorite", 0x2414B3, MaterialForm.METAL, "Syrmorite")
-                .requiresMods("gregtech")
+                .requiresMods("pollution")
                 .requiresOres("ingotSyrmorite")
                 .setCastable(() -> PollutionMaterials.syrmorite.getFluid(), 800)
                 .withStatsHead(1250, 5F, 6F, 3)
@@ -975,7 +989,7 @@ public class GTinkerMaterials
 
         //炽焰铁
         OCTINE = new MaterialBuilder("octine", 0xFFAE33, MaterialForm.METAL, "Octine")
-                .requiresMods("gregtech")
+                .requiresMods("pollution")
                 .requiresOres("ingotOctine")
                 .setCastable(() -> PollutionMaterials.octine.getFluid(), 800)
                 .withStatsHead(1500, 6F, 7F, 3)
@@ -987,7 +1001,7 @@ public class GTinkerMaterials
 
         //痂壳晶
         SCABYST = new MaterialBuilder("scabyst", 0xFFAE33, MaterialForm.METAL, "Scabyst")
-                .requiresMods("gregtech")
+                .requiresMods("pollution")
                 .requiresOres("ingotScabyst")
                 .setCastable(() -> PollutionMaterials.scabyst.getFluid(), 800)
                 .withStatsHead(1750, 6F, 7F, 3)
@@ -999,7 +1013,7 @@ public class GTinkerMaterials
 
         //法罗钠
         VALONITE = new MaterialBuilder("valonite", 0xFFCCFF, MaterialForm.GEM, "Valonite")
-                .requiresMods("gregtech")
+                .requiresMods("pollution")
                 .requiresOres("gemValonite")
                 .setCastable(() -> PollutionMaterials.valonite.getFluid(), 800)
                 .withStatsHead(2000, 8F, 7F, 4)

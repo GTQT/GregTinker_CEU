@@ -1,6 +1,7 @@
 package cn.gtcommunity.gregtinker;
 
 import cn.gtcommunity.gregtinker.common.CommonProxy;
+import cn.gtcommunity.gregtinker.common.items.GTMetaItems;
 import cn.gtcommunity.gregtinker.material.MaterialDefinition;
 import cn.gtcommunity.gregtinker.village.CustomVillageStructures;
 import net.minecraftforge.fml.common.Mod;
@@ -37,6 +38,7 @@ public class GregTinker
     public void preInit(FMLPreInitializationEvent event)
     {
         proxy.onPreInit(event);
+        GTMetaItems.initialization();
     }
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)

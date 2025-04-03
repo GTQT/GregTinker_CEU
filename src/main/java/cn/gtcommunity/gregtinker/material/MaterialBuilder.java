@@ -5,6 +5,7 @@ import cn.gtcommunity.gregtinker.api.reflect.CraftReflect;
 import cn.gtcommunity.gregtinker.api.reflect.GTReflect;
 import cn.gtcommunity.gregtinker.api.utils.GTiLog;
 import cn.gtcommunity.gregtinker.api.utils.collection.LazyAccum;
+import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import slimeknights.tconstruct.library.TinkerRegistry;
@@ -15,6 +16,8 @@ import slimeknights.tconstruct.library.traits.ITrait;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Supplier;
+
+import static cn.gtcommunity.gregtinker.material.GTinkerMaterials.FLETCHING_MATERIALS;
 
 public class MaterialBuilder
 {
