@@ -32,20 +32,20 @@ public class MachineRecipes {
     }
 
     private static void initToolParts() {
-        buildToolPartRecipes(TinkerMaterials.bronze, VA[ULV]);
-        buildToolPartRecipes(TinkerMaterials.iron, VA[ULV]);
-        buildToolPartRecipes(TinkerMaterials.pigiron, VA[ULV]);
-        buildToolPartRecipes(TinkerMaterials.copper, VA[ULV]);
-        buildToolPartRecipes(TinkerMaterials.lead, VA[ULV]);
-        buildToolPartRecipes(TinkerMaterials.steel, VA[LV]);
-        buildToolPartRecipes(TinkerMaterials.cobalt, VA[LV]);
+        buildToolPartRecipes(TinkerMaterials.bronze, 1);
+        buildToolPartRecipes(TinkerMaterials.iron, 1);
+        buildToolPartRecipes(TinkerMaterials.pigiron, 1);
+        buildToolPartRecipes(TinkerMaterials.copper, 1);
+        buildToolPartRecipes(TinkerMaterials.lead, 1);
+        buildToolPartRecipes(TinkerMaterials.steel, 2);
+        buildToolPartRecipes(TinkerMaterials.cobalt, 2);
 
-        buildExtractorRecipes(TinkerMaterials.bronze, VA[ULV]);
-        buildExtractorRecipes(TinkerMaterials.iron, VA[ULV]);
-        buildExtractorRecipes(TinkerMaterials.copper, VA[ULV]);
-        buildExtractorRecipes(TinkerMaterials.lead, VA[ULV]);
-        buildExtractorRecipes(TinkerMaterials.steel, VA[LV]);
-        buildExtractorRecipes(TinkerMaterials.cobalt, VA[LV]);
+        buildExtractorRecipes(TinkerMaterials.bronze, 1);
+        buildExtractorRecipes(TinkerMaterials.iron, 1);
+        buildExtractorRecipes(TinkerMaterials.copper, 1);
+        buildExtractorRecipes(TinkerMaterials.lead, 1);
+        buildExtractorRecipes(TinkerMaterials.steel, 2);
+        buildExtractorRecipes(TinkerMaterials.cobalt, 2);
 
         Iterator materials = MATERIALS.iterator();
 
@@ -104,20 +104,20 @@ public class MachineRecipes {
                 .inputs(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("tconstruct", "pattern"))))
                 .notConsumable(getPattern("bow_string"))
                 .outputs(getPattern("bow_string"))
-                .duration(50).EUt(2).buildAndRegister();
+                .duration(50).EUt(VA[LV]).buildAndRegister();
 
         RecipeMaps.FORMING_PRESS_RECIPES.recipeBuilder()
                 .inputs(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("tconstruct", "pattern"))))
                 .notConsumable(getPattern("fletching"))
                 .outputs(getPattern("fletching"))
-                .duration(50).EUt(2).buildAndRegister();
+                .duration(50).EUt(VA[LV]).buildAndRegister();
 
         for (int i = 0; i <= 4; i++) {
             RecipeMaps.FORMING_PRESS_RECIPES.recipeBuilder()
                     .inputs(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("tconstruct", "cast"))))
                     .notConsumable(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("tconstruct", "cast_custom")), 1, i))
                     .outputs(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("tconstruct", "cast_custom")), 1, i))
-                    .duration(120).EUt(22).buildAndRegister();
+                    .duration(120).EUt(VA[LV]).buildAndRegister();
         }
     }
 
@@ -132,28 +132,29 @@ public class MachineRecipes {
                 .inputs(blank)
                 .notConsumable(cast)
                 .outputs(shape)
-                .duration(240).EUt(32).buildAndRegister();
+                .duration(240).EUt(VA[LV]).buildAndRegister();
 
         RecipeMaps.FORMING_PRESS_RECIPES.recipeBuilder()
                 .inputs(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("tconstruct", "cast"))))
                 .notConsumable(cast)
                 .outputs(cast)
-                .duration(120).EUt(22).buildAndRegister();
+                .duration(120).EUt(VA[LV]).buildAndRegister();
 
         RecipeMaps.FORMING_PRESS_RECIPES.recipeBuilder()
                 .inputs(blank)
                 .notConsumable(shape)
                 .outputs(shape)
-                .duration(120).EUt(22).buildAndRegister();
+                .duration(120).EUt(VA[LV]).buildAndRegister();
 
         RecipeMaps.FORMING_PRESS_RECIPES.recipeBuilder()
                 .inputs(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("tconstruct", "pattern"))))
                 .notConsumable(pattern)
                 .outputs(pattern)
-                .duration(50).EUt(2).buildAndRegister();
+                .duration(50).EUt(VA[LV]).buildAndRegister();
     }
 
-    private static void buildToolPartRecipes(Material material, int eut) {
+    private static void buildToolPartRecipes(Material material, int tier) {
+        int eut= VA[tier];
         RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(2, material.getRepresentativeItem()))
                 .notConsumable(GTMetaItems.SHAPE_EXTRUDER_ARROWHEAD)
@@ -299,7 +300,10 @@ public class MachineRecipes {
                 .duration(1200).EUt(eut).buildAndRegister();
     }
 
-    private static void buildExtractorRecipes(Material material, int eut) {
+    private static void buildExtractorRecipes(Material material, int tier) {
+        if(material.getFluid()==null)return;
+        int eut= VA[tier];
+
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(TinkerTools.arrowHead.getItemstackWithMaterial(material))
                 .fluidOutputs(new FluidStack(material.getFluid(), 2 * 144))
@@ -445,7 +449,8 @@ public class MachineRecipes {
                 .duration(120 * 2).EUt(eut).buildAndRegister();
     }
 
-    private static void buildBowstringRecipes(Material material, int eut) {
+    private static void buildBowstringRecipes(Material material, int tier) {
+        int eut= VA[tier];
         RecipeMaps.WIREMILL_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(32, material.getRepresentativeItem()))
                 .outputs(TinkerTools.bowString.getItemstackWithMaterial(material))
@@ -459,7 +464,8 @@ public class MachineRecipes {
                 .duration(40 * 2).EUt(eut).buildAndRegister();
     }
 
-    private static void buildFletchingRecipes(Material material, int eut) {
+    private static void buildFletchingRecipes(Material material, int tier) {
+        int eut= VA[tier];
         RecipeMaps.BENDER_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(16, material.getRepresentativeItem()))
                 .outputs(TinkerTools.fletching.getItemstackWithMaterial(material))

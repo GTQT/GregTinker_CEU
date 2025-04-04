@@ -155,6 +155,7 @@ material.kevlar.name=凯夫拉
 material.polyetheretherketone.name=聚芳醚酮
 material.polybenzimidazole.name=聚苯并咪唑
 material.zylon.name=柴隆纤维
+material.kaptonk.name=聚酰亚胺K
 
 material.americium.name=镅
 material.lutetium.name=镥
@@ -237,8 +238,6 @@ modifier.arcane.desc=§o天黑了,让我们去挖矿吧!§r\n夜晚对工具的�
 
 modifier.organizing.name=增生
 modifier.organizing.desc=§o现在你是棵树!§r\n有可能产生木头.
-modifier.blind.name=失明
-modifier.blind.desc=§o一个漆黑的夜晚,我甚至看不见!§r\n黑暗带给你虚弱及失明.
 
 modifier.bright.name=发光
 modifier.bright.desc=§o一个明亮的白天,我感到了力量!§r\n白天会使你发光.
