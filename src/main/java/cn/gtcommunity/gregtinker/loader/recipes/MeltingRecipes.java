@@ -18,6 +18,7 @@ import static slimeknights.tconstruct.common.config.Config.oreToIngotRatio;
 
 public class  MeltingRecipes {
     public static void init() {
+        addMeltingOres(ironOres, new FluidStack(Materials.Iron.getFluid(), 144));
         addMeltingOres(tinOres, new FluidStack(Materials.Tin.getFluid(), 144));
         addMeltingOres(copperOres, new FluidStack(Materials.Copper.getFluid(), 144));
         addMeltingOres(leadOres, new FluidStack(Materials.Lead.getFluid(), 144));
@@ -27,6 +28,17 @@ public class  MeltingRecipes {
     }
 
     private MeltingRecipes() {}
+
+    private static final Map<Integer, List<UnificationEntry>> ironOres = new HashMap<>() {{
+        put(1, Arrays.asList(
+                new UnificationEntry(OrePrefix.ore, Materials.Iron),
+                new UnificationEntry(OrePrefix.ore, Materials.BrownLimonite),
+                new UnificationEntry(OrePrefix.ore, Materials.YellowLimonite),
+                new UnificationEntry(OrePrefix.ore, Materials.Chromite),
+                new UnificationEntry(OrePrefix.ore, Materials.Magnetite),
+                new UnificationEntry(OrePrefix.ore, Materials.Pyrite)
+        ));
+    }};
 
     private static final Map<Integer, List<UnificationEntry>> tinOres = new HashMap<>() {{
         put(1, Arrays.asList(new UnificationEntry(OrePrefix.ore, Materials.Tin)));
@@ -44,7 +56,8 @@ public class  MeltingRecipes {
     }};
 
     private static final Map<Integer, List<UnificationEntry>> leadOres = new HashMap<>() {{
-        put(1, Arrays.asList(new UnificationEntry(OrePrefix.ore, Materials.Lead), new UnificationEntry(OrePrefix.ore, Materials.Galena)));
+        put(1, Arrays.asList(new UnificationEntry(OrePrefix.ore, Materials.Lead),
+                new UnificationEntry(OrePrefix.ore, Materials.Galena)));
     }};
 
     private static final Map<Integer, List<UnificationEntry>> goldOres = new HashMap<>() {{
@@ -52,7 +65,11 @@ public class  MeltingRecipes {
     }};
 
     private static final Map<Integer, List<UnificationEntry>> nickelOres = new HashMap<>() {{
-        put(1, Arrays.asList(new UnificationEntry(OrePrefix.ore, Materials.Nickel)));
+        put(1, Arrays.asList(
+                new UnificationEntry(OrePrefix.ore, Materials.Nickel),
+                new UnificationEntry(OrePrefix.ore, Materials.Garnierite),
+                new UnificationEntry(OrePrefix.ore, Materials.Pentlandite)
+        ));
     }};
 
     private static final Map<Integer, List<UnificationEntry>> silverOres = new HashMap<>() {{
