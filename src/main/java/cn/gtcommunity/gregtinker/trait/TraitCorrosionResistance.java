@@ -8,17 +8,15 @@ import net.minecraft.world.World;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-public class TraitCorrosionResistance extends AbstractTrait
-{
+public class TraitCorrosionResistance extends AbstractTrait {
     private boolean update = false;
-    public TraitCorrosionResistance()
-    {
+
+    public TraitCorrosionResistance() {
         super("corrosion_resistance", 0xE5E4E2);
     }
 
     @Override
-    public void afterBlockBreak(ItemStack tool, World world, IBlockState state, BlockPos pos, EntityLivingBase player, boolean wasEffective)
-    {
+    public void afterBlockBreak(ItemStack tool, World world, IBlockState state, BlockPos pos, EntityLivingBase player, boolean wasEffective) {
         super.afterBlockBreak(tool, world, state, pos, player, wasEffective);
         if (ToolHelper.getHarvestLevelStat(tool) > state.getBlock().getHarvestLevel(state)) update = true;
     }
@@ -30,10 +28,8 @@ public class TraitCorrosionResistance extends AbstractTrait
     }
 
     @Override
-    public int onToolDamage(ItemStack tool, int damage, int newDamage, EntityLivingBase entity)
-    {
-        if (update)
-        {
+    public int onToolDamage(ItemStack tool, int damage, int newDamage, EntityLivingBase entity) {
+        if (update) {
             newDamage = 0;
             update = false;
         }

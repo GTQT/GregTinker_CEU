@@ -12,26 +12,22 @@ import cn.gtcommunity.gregtinker.material.MaterialDefinition;
 import cn.gtcommunity.gregtinker.trait.GTinkerTraits;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import slimeknights.mantle.client.book.repository.FileRepository;
-import slimeknights.tconstruct.library.book.TinkerBook;
 
-public class CommonProxy
-{
+public class CommonProxy {
     private final ToolCapabilityHandler toolCapHandler = new ToolCapabilityHandler();
 
-    public CommonProxy()
-    {/**/}
+    public CommonProxy() {/**/}
+
     public void init() {
 
     }
+
     public ToolCapabilityHandler getToolCapHandler() {
         return toolCapHandler;
     }
 
-    public void onPreInit(FMLPreInitializationEvent event)
-    {
+    public void onPreInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(toolCapHandler);
         GTiLog.init(event.getModLog());
         GTinkerMaterials.init();
@@ -39,16 +35,13 @@ public class CommonProxy
         preLoad();
     }
 
-    public void onInit(FMLInitializationEvent event)
-    {
+    public void onInit(FMLInitializationEvent event) {
         MaterialDefinition.initMaterialProperties();
         GTinkerTraits.initModifierMaterials();
     }
 
 
-
-    public void preLoad()
-    {
+    public void preLoad() {
 
     }
 

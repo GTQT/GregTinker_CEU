@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PartType
-{
+public enum PartType {
     HEAD(MaterialTypes.HEAD),
     HANDLE(MaterialTypes.HANDLE),
     EXTRA(MaterialTypes.EXTRA),
@@ -19,7 +18,7 @@ public enum PartType
     SHAFT(MaterialTypes.SHAFT),
     FLETCHING(MaterialTypes.FLETCHING),
 
-    DEFAULT((String)null),
+    DEFAULT((String) null),
     MAIN(HEAD, BOW, PROJECTILE),
     AUX(DEFAULT, HANDLE, EXTRA, BOWSTRING, SHAFT, FLETCHING),
     TOOL(DEFAULT, HEAD, HANDLE, EXTRA, BOW, BOWSTRING, PROJECTILE, SHAFT, FLETCHING);
@@ -30,8 +29,7 @@ public enum PartType
         this.typeKeys = Arrays.asList(typeKeys);
     }
 
-    PartType(PartType... types)
-    {
+    PartType(PartType... types) {
         this.typeKeys = Arrays.stream(types).flatMap(t -> t.typeKeys.stream()).collect(Collectors.toList());
     }
 }

@@ -6,19 +6,16 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 
-public class StatelessCapabilitySerializer<T> implements Capability.IStorage<T>
-{
-    public StatelessCapabilitySerializer()
-    {/**/}
+public class StatelessCapabilitySerializer<T> implements Capability.IStorage<T> {
+    public StatelessCapabilitySerializer() {/**/}
 
     @Nullable
     @Override
-    public NBTBase writeNBT(Capability<T> capability, T instance, EnumFacing side)
-    {
+    public NBTBase writeNBT(Capability<T> capability, T instance, EnumFacing side) {
         return null;
     }
 
     @Override
-    public void readNBT(Capability<T> capability, T instance, EnumFacing side, NBTBase nbt)
-    {}
+    public void readNBT(Capability<T> capability, T instance, EnumFacing side, NBTBase nbt) {
+    }
 }

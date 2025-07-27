@@ -7,10 +7,8 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import java.util.Optional;
 
-public class OptUtils
-{
-    public OptUtils()
-    {/**/}
+public class OptUtils {
+    public OptUtils() {/**/}
 
     public static Optional<NBTTagCompound> stackTag(ItemStack stack) {
         return stack.hasTagCompound() ? Optional.of(stack.getTagCompound()) : Optional.empty();

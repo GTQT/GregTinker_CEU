@@ -23,8 +23,7 @@ public class TraitGlimmer extends AbstractTrait {
 
     @Override
     public void onUpdate(ItemStack item, World world, Entity entity, int i, boolean b) {
-        if (entity instanceof EntityPlayer) {
-            EntityPlayer e = (EntityPlayer) entity;
+        if (entity instanceof EntityPlayer e) {
             if (TinkerUtil.hasTrait(TagUtil.getTagSafe(e.getHeldItemMainhand()), identifier)) {
                 e.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 100));
             }

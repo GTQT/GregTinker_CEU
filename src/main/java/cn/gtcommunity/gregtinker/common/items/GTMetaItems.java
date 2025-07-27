@@ -1,6 +1,5 @@
 package cn.gtcommunity.gregtinker.common.items;
 
-import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
 
 public class GTMetaItems {

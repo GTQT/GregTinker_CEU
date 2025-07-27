@@ -23,83 +23,64 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class ToolCapabilityHandler
-{
+public class ToolCapabilityHandler {
     private final ResourceLocation GT_CAP = new ResourceLocation(GregTinker.MODID, "multi_capability");
     private final Map<String, Function<ItemStack, ICapabilityProvider>> modifierCaps = new HashMap<>();
 
-    public void addModifierCap(Modifier mod, Function<ItemStack, ICapabilityProvider> capFactory)
-    {
+    public void addModifierCap(Modifier mod, Function<ItemStack, ICapabilityProvider> capFactory) {
         addModifierCap(mod.getIdentifier(), capFactory);
     }
 
-    public void addModifierCap(String modifierId, Function<ItemStack, ICapabilityProvider> capFactory)
-    {
+    public void addModifierCap(String modifierId, Function<ItemStack, ICapabilityProvider> capFactory) {
         modifierCaps.put(modifierId, capFactory);
     }
 
     @SubscribeEvent
-    public void onItemCapAttach(AttachCapabilitiesEvent<ItemStack> event)
-    {
+    public void onItemCapAttach(AttachCapabilitiesEvent<ItemStack> event) {
         ItemStack stack = event.getObject();
-        if (stack.getItem() instanceof ITinkerable)
-        {
+        if (stack.getItem() instanceof ITinkerable) {
             event.addCapability(GT_CAP, new GTCapProvider(stack, modifierCaps));
         }
     }
 
-    private static class GTCapProvider implements ICapabilityProvider
-    {
+    private static class GTCapProvider implements ICapabilityProvider {
 
         private final ItemStack stack;
         private final Map<String, Function<ItemStack, ICapabilityProvider>> capFactories;
         private final Map<String, Optional<ICapabilityProvider>> capCache = new HashMap<>();
 
-        public GTCapProvider(ItemStack stack, Map<String, Function<ItemStack, ICapabilityProvider>> capFactories)
-        {
+        public GTCapProvider(ItemStack stack, Map<String, Function<ItemStack, ICapabilityProvider>> capFactories) {
             this.stack = stack;
             this.capFactories = capFactories;
         }
 
         @Override
-        public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
-        {
+        public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
             return getCapability(capability, facing) != null;
         }
 
         @Nullable
         @Override
-        public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
-        {
-            for (NBTBase tag : TagUtil.getModifiersTagList(stack))
-            {
-                if (tag instanceof NBTTagCompound)
-                {
-                    ModifierNBT modTag = ModifierNBT.readTag((NBTTagCompound)tag);
+        public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+            for (NBTBase tag : TagUtil.getModifiersTagList(stack)) {
+                if (tag instanceof NBTTagCompound) {
+                    ModifierNBT modTag = ModifierNBT.readTag((NBTTagCompound) tag);
                     ICapabilityProvider capProvider = null;
                     Optional<ICapabilityProvider> capProviderOpt = capCache.get(modTag.identifier);
-                    if (capProviderOpt != null)
-                    {
-                        if (capProviderOpt.isPresent())
-                        {
+                    if (capProviderOpt != null) {
+                        if (capProviderOpt.isPresent()) {
                             capProvider = capProviderOpt.get();
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Function<ItemStack, ICapabilityProvider> capFactory = capFactories.get(modTag.identifier);
-                        if (capFactory != null)
-                        {
+                        if (capFactory != null) {
                             capProvider = capFactory.apply(stack);
                             capCache.put(modTag.identifier, Optional.of(capProvider));
-                        }
-                        else
-                        {
+                        } else {
                             capCache.put(modTag.identifier, Optional.empty());
                         }
                     }
-                    if (capProvider != null && capProvider.hasCapability(capability, facing))
-                    {
+                    if (capProvider != null && capProvider.hasCapability(capability, facing)) {
                         return Objects.requireNonNull(capProvider.getCapability(capability, facing));
                     }
                 }

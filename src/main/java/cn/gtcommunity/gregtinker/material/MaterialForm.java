@@ -6,12 +6,11 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-public enum MaterialForm
-{
+public enum MaterialForm {
     METAL(
             new Entry("ingot", MaterialCastType.INGOT),
             new Entry("dust"),
-            new Entry("nugget",Material.VALUE_Nugget, MaterialCastType.NUGGET)),
+            new Entry("nugget", Material.VALUE_Nugget, MaterialCastType.NUGGET)),
     GEM(new Entry("gem"), new Entry("crystal")),
     STONE_BLOCK(
             new Entry("block", MaterialCastType.BLOCK),
@@ -34,16 +33,14 @@ public enum MaterialForm
         this.entries = Arrays.asList(entries);
     }
 
-    public static class Entry
-    {
+    public static class Entry {
 
         public final String prefix;
         public final int value;
         @Nullable
         public final MaterialCastType castType;
 
-        Entry(String prefix, int value, @Nullable MaterialCastType castType)
-        {
+        Entry(String prefix, int value, @Nullable MaterialCastType castType) {
             this.prefix = prefix;
             this.value = value;
             this.castType = castType;

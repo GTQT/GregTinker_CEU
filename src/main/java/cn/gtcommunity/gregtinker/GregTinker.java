@@ -14,8 +14,7 @@ import net.minecraftforge.fml.common.event.*;
         version = GregTinker.VERSION,
         dependencies = GregTinker.DEPENDENCIES
 )
-public class GregTinker
-{
+public class GregTinker {
     public static final String MODID = "gregtinker";
     public static final String NAME = "GregTinker";
     public static final String VERSION = "0.0.1";
@@ -31,35 +30,33 @@ public class GregTinker
     )
     public static CommonProxy proxy;
 
-    public GregTinker()
-    {/**/}
+    public GregTinker() {/**/}
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
         proxy.onPreInit(event);
         GTMetaItems.initialization();
     }
+
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         proxy.onInit(event);
         proxy.init();
         CustomVillageStructures.registerVillageComponents();
     }
+
     @Mod.EventHandler
     public void loadComplete(FMLLoadCompleteEvent event) {
         proxy.loadComplete();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
+    public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit();
     }
+
     @Mod.EventHandler
-    public void onImcReceived(FMLInterModComms.IMCEvent event)
-    {
+    public void onImcReceived(FMLInterModComms.IMCEvent event) {
         // we need this to happen before tcon's post-init finishes and the imc handling event just happens to be convenient
         MaterialDefinition.activate();
     }

@@ -16,8 +16,7 @@ import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 
-public class ItemUtils
-{
+public class ItemUtils {
     public static final short WILDCARD_META = Short.MAX_VALUE;
 
     public ItemUtils() {
@@ -25,7 +24,8 @@ public class ItemUtils
 
     public static boolean matchesWithWildcard(ItemStack a, ItemStack b) {
         boolean var10000;
-        label39: {
+        label39:
+        {
             if (a.getItem().equals(b.getItem()) && (a.getMetadata() == 32767 || b.getMetadata() == 32767 || a.getMetadata() == b.getMetadata())) {
                 if (a.hasTagCompound()) {
                     if (b.hasTagCompound() && b.getTagCompound().equals(a.getTagCompound())) {
@@ -66,7 +66,7 @@ public class ItemUtils
             Iterator<String> iter = itemTooltip.iterator();
             tooltip.add(stack.getItem().getForgeRarity(stack).getColor() + iter.next());
 
-            while(iter.hasNext()) {
+            while (iter.hasNext()) {
                 tooltip.add(TextFormatting.GRAY + iter.next());
             }
 

@@ -1,7 +1,6 @@
 package cn.gtcommunity.gregtinker.trait.base;
 
-public interface GTEnergeticModifier
-{
+public interface GTEnergeticModifier {
     default EnergyType getEnergyType() {
         return EnergyType.GTEU;
     }

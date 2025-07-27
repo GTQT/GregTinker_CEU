@@ -20,7 +20,7 @@ import slimeknights.tconstruct.library.utils.ToolHelper;
 
 public class TraitNatureBound extends AbstractTrait {
     public static DamageSource splinter = new DamageSource("splinter").setDamageBypassesArmor();
-    private static int chance = 20;
+    private static final int chance = 20;
 
     public TraitNatureBound() {
         super("naturebound", TextFormatting.GREEN);
@@ -50,9 +50,6 @@ public class TraitNatureBound extends AbstractTrait {
             e.getPlayer().playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
         }
     }
-
-
-
 
 
 }

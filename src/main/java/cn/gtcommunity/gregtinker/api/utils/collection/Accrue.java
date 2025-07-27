@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Consumer;
 
-public class Accrue<T> implements Consumer<T>
-{
+public class Accrue<T> implements Consumer<T> {
     private final Collection<T> backing;
 
     public Accrue(Collection<T> backing) {

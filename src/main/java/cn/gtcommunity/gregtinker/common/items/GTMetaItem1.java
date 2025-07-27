@@ -1,16 +1,10 @@
 package cn.gtcommunity.gregtinker.common.items;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.stack.RecyclingData;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.unification.stack.RecyclingData;
 import gregtech.common.creativetab.GTCreativeTabs;
-import keqing.gtqtcore.common.items.GTQTBattery;
-import keqing.gtqtcore.common.items.GTQTMetaItem1;
-import keqing.gtqtcore.common.items.armors.GTQTMetaArmor;
 
 import static cn.gtcommunity.gregtinker.common.items.GTMetaItems.*;
 import static gregtech.api.GTValues.M;

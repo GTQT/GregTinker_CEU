@@ -9,29 +9,24 @@ import javax.annotation.Nullable;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
-public class CapabilityBroker implements ICapabilityProvider
-{
+public class CapabilityBroker implements ICapabilityProvider {
     private final Map<Capability<?>, Object> capabilities = new IdentityHashMap<>();
 
-    public CapabilityBroker()
-    {/**/}
+    public CapabilityBroker() {/**/}
 
-    public <T> CapabilityBroker with(Capability<T> capability, T aspect)
-    {
+    public <T> CapabilityBroker with(Capability<T> capability, T aspect) {
         this.capabilities.put(capability, aspect);
         return this;
     }
 
     @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
-    {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         return this.capabilities.containsKey(capability);
     }
 
     @Nullable
     @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
-    {
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         return (T) this.capabilities.get(capability);
     }
 }

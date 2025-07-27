@@ -1,8 +1,10 @@
 package cn.gtcommunity.gregtinker.trait;
 
-import cn.gtcommunity.gregtinker.api.utils.GTiLog;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -17,9 +19,8 @@ import slimeknights.tconstruct.library.traits.AbstractTrait;
 
 import java.util.List;
 
-public class TraitExorcism extends AbstractTrait
-{
-    private static float bonusDamage = 10.0F;
+public class TraitExorcism extends AbstractTrait {
+    private static final float bonusDamage = 10.0F;
 
     public TraitExorcism() {
         super("exorcism", 0xFFF8DC);
@@ -27,49 +28,40 @@ public class TraitExorcism extends AbstractTrait
     }
 
     @Override
-    public void onUpdate(ItemStack tool, World world, Entity entity, int itemSlot, boolean isSelected)
-    {
+    public void onUpdate(ItemStack tool, World world, Entity entity, int itemSlot, boolean isSelected) {
         super.onUpdate(tool, world, entity, itemSlot, isSelected);
     }
 
-    public float damage(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, float newDamage, boolean isCritical)
-    {
-        if (target.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD)
-        {
+    public float damage(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, float newDamage, boolean isCritical) {
+        if (target.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD) {
             newDamage += bonusDamage;
         }
 
         return super.damage(tool, player, target, damage, newDamage, isCritical);
     }
 
-    public void afterHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damageDealt, boolean wasCritical, boolean wasHit)
-    {
-        if (wasHit && !target.isDead && target.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD)
-        {
+    public void afterHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damageDealt, boolean wasCritical, boolean wasHit) {
+        if (wasHit && !target.isDead && target.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD) {
             target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 100, 0, false, true));
         }
 
     }
 
-    public List<String> getExtraInfo(ItemStack tool, NBTTagCompound modifierTag)
-    {
+    public List<String> getExtraInfo(ItemStack tool, NBTTagCompound modifierTag) {
         String loc = Util.translate("modifier.%s.extra", this.getIdentifier());
         return ImmutableList.of(Util.translateFormatted(loc, Util.df.format(bonusDamage)));
     }
 
     @SubscribeEvent
-    public void onEntitySetTarget(LivingSetAttackTargetEvent event)
-    {
+    public void onEntitySetTarget(LivingSetAttackTargetEvent event) {
         if (!(event.getTarget() instanceof EntityPlayer player)) return;
 
         if (!event.getEntityLiving().isEntityUndead()) return;
 
-        ItemStack[] inventory = new ItemStack[] {player.getHeldItemMainhand(), player.getHeldItemOffhand()};
+        ItemStack[] inventory = new ItemStack[]{player.getHeldItemMainhand(), player.getHeldItemOffhand()};
 
-        for (ItemStack item : inventory)
-        {
-            if (isToolWithTrait(item))
-            {
+        for (ItemStack item : inventory) {
+            if (isToolWithTrait(item)) {
                 EntityLiving entity = (EntityLiving) event.getEntityLiving();
                 entity.setAttackTarget(null);
                 entity.getNavigator().tryMoveToXYZ(2 * entity.posX - player.posX, entity.posY, 2 * entity.posZ - player.posZ, 1);

@@ -23,10 +23,6 @@ public class TraitDark extends AbstractTrait {
     }
 
     public boolean isNight(int time) {
-        if (time > 12500) {
-            return true;
-        } else {
-            return false;
-        }
+        return time > 12500;
     }
 }

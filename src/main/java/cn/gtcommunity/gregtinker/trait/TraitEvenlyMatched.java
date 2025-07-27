@@ -4,25 +4,19 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitEvenlyMatched  extends AbstractTrait
-{
+public class TraitEvenlyMatched extends AbstractTrait {
 
-    public TraitEvenlyMatched()
-    {
+    public TraitEvenlyMatched() {
         super("evenly_matched", 0xE6E6FA);
     }
 
     @Override
-    public float damage(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, float newDamage, boolean isCritical)
-    {
+    public float damage(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, float newDamage, boolean isCritical) {
         float difference = player.getHealth() - target.getHealth();
 
-        if (difference <= 0)
-        {
+        if (difference <= 0) {
             newDamage += ((random.nextInt(3) + 2) / 10F) * (Math.abs(difference) / target.getHealth()) * Math.min(target.getMaxHealth(), 500);
-        }
-        else
-        {
+        } else {
             newDamage = Math.max(2, newDamage - ((random.nextInt(3) + 2) / 10F) * (difference / player.getHealth()) * player.getMaxHealth());
         }
 

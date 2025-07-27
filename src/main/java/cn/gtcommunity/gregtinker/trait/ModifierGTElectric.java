@@ -2,7 +2,6 @@ package cn.gtcommunity.gregtinker.trait;
 
 import cn.gtcommunity.gregtinker.GregTinker;
 import cn.gtcommunity.gregtinker.api.capability.CapabilityBroker;
-import cn.gtcommunity.gregtinker.api.utils.GTiLog;
 import cn.gtcommunity.gregtinker.api.utils.ItemUtils;
 import cn.gtcommunity.gregtinker.api.utils.OptUtils;
 import cn.gtcommunity.gregtinker.trait.base.GTEnergeticModifier;
@@ -27,8 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModifier
-{
+public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModifier {
     public static final int COLOUR = 0x0a00c6;
 
     public ModifierGTElectric() {
@@ -45,15 +43,21 @@ public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModi
 //        return !PowerWrapper.isPowered(stack) || isToolWithTrait(stack);
 //    }
 
+    public static int doDamageReduction(ItemStack tool, EntityLivingBase user, int damage, double unitCost) {
+        if (damage > 0) {
+            return OptUtils.capability(tool, GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM)
+                    .map(e -> e.discharge((long) Math.floor(damage * unitCost), 999, true, false, false) != 0 ? 0 : damage)
+                    .orElse(damage);
+        }
+        return damage;
+    }
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
-    public void onToolTips(ItemTooltipEvent event)
-    {
-        if (isToolWithTrait(event.getItemStack()))
-        {
+    public void onToolTips(ItemTooltipEvent event) {
+        if (isToolWithTrait(event.getItemStack())) {
             IElectricItem electricItem = event.getItemStack().getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null);
-            if (electricItem != null)
-            {
+            if (electricItem != null) {
                 event.getToolTip().add(I18n.format("metaitem.generic.electric_item.tooltip",
                         electricItem.getCharge(),
                         electricItem.getMaxCharge(),
@@ -66,19 +70,10 @@ public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModi
     public boolean canApplyTogether(IToolMod otherModifier) {
         return !(otherModifier instanceof ModMendingMoss);
     }
-    
+
     @Override
     public int onToolDamage(ItemStack tool, int damage, int newDamage, EntityLivingBase entity) {
         return doDamageReduction(tool, entity, newDamage, 300);
-    }
-
-    public static int doDamageReduction(ItemStack tool, EntityLivingBase user, int damage, double unitCost) {
-        if (damage > 0) {
-            return OptUtils.capability(tool, GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM)
-                    .map(e -> e.discharge((long)Math.floor(damage * unitCost), 999, true,false,false) != 0 ? 0 : damage)
-                    .orElse(damage);
-        }
-        return damage;
     }
 
     @Override
@@ -88,35 +83,20 @@ public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModi
 
     public static class ElectricToolBuffer implements IElectricItem {
 
-        private final ItemStack stack;
-
         protected final List<BiConsumer<ItemStack, Long>> listeners = new ArrayList<>();
+        private final ItemStack stack;
 
         public ElectricToolBuffer(ItemStack stack) {
             this.stack = stack;
         }
 
-        public void setTier(int tier)
-        {
-            ItemUtils.getOrCreateTag(stack).setInteger("Tier", tier);
-        }
-
-        public void setCharge(long change)
-        {
-            //noinspection ConstantConditions
-            ItemUtils.getOrCreateTag(stack).setLong("Charge", change);
-            listeners.forEach(l -> l.accept(stack, change));
-        }
-
-        public void setMaxChargeOverride(long maxCharge)
-        {
+        public void setMaxChargeOverride(long maxCharge) {
             //noinspection ConstantConditions
             ItemUtils.getOrCreateTag(stack).setLong("MaxCharge", maxCharge);
             listeners.forEach(l -> l.accept(stack, maxCharge));
         }
 
-        public void setProvideChargeExternally(long canProvideCharge)
-        {
+        public void setProvideChargeExternally(long canProvideCharge) {
             ItemUtils.getOrCreateTag(stack).setLong("ProvideCharge", canProvideCharge);
         }
 
@@ -131,8 +111,7 @@ public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModi
         }
 
         @Override
-        public void addChargeListener(BiConsumer<ItemStack, Long> chargeListener)
-        {
+        public void addChargeListener(BiConsumer<ItemStack, Long> chargeListener) {
             listeners.add(chargeListener);
         }
 
@@ -175,20 +154,17 @@ public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModi
         }
 
         @Override
-        public long getTransferLimit()
-        {
+        public long getTransferLimit() {
             return GTValues.V[getTier()];
         }
 
         @Override
-        public long getMaxCharge()
-        {
+        public long getMaxCharge() {
             return /*OptUtils.stackTag(stack).map(t -> t.getLong("MaxCharge")).orElse(0L)*/1000L;
         }
 
         @Override
-        public long getCharge()
-        {
+        public long getCharge() {
             NBTTagCompound tagCompound = stack.getTagCompound();
             if (tagCompound == null)
                 return 0;
@@ -197,8 +173,13 @@ public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModi
             return Math.min(tagCompound.getLong("Charge"), getMaxCharge());
         }
 
-        public void setInfiniteCharge(boolean infiniteCharge)
-        {
+        public void setCharge(long change) {
+            //noinspection ConstantConditions
+            ItemUtils.getOrCreateTag(stack).setLong("Charge", change);
+            listeners.forEach(l -> l.accept(stack, change));
+        }
+
+        public void setInfiniteCharge(boolean infiniteCharge) {
             //noinspection ConstantConditions
             ItemUtils.getOrCreateTag(stack).setBoolean("Infinite", infiniteCharge);
             listeners.forEach(l -> l.accept(stack, getMaxCharge()));
@@ -207,6 +188,10 @@ public class ModifierGTElectric extends ModifierTrait implements GTEnergeticModi
         @Override
         public int getTier() {
             return /*OptUtils.stackTag(stack).map(t -> t.getInteger("Tier")).orElse(0);*/2;
+        }
+
+        public void setTier(int tier) {
+            ItemUtils.getOrCreateTag(stack).setInteger("Tier", tier);
         }
     }
 }

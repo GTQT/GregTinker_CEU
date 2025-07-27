@@ -5,12 +5,10 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 
-public class TraitInducedLightning extends AbstractTrait
-{
+public class TraitInducedLightning extends AbstractTrait {
     private final float chance = 0.025F;
 
-    public TraitInducedLightning()
-    {
+    public TraitInducedLightning() {
         super("induced_lightning", 0xE6E6FA);
     }
 
@@ -22,8 +20,7 @@ public class TraitInducedLightning extends AbstractTrait
 
         if (!target.getEntityWorld().canSeeSky(target.getPosition())) return;
 
-        if (chance > random.nextFloat())
-        {
+        if (chance > random.nextFloat()) {
             target.getEntityWorld().addWeatherEffect(new EntityLightningBolt(target.getEntityWorld(), target.posX, target.posY, target.posZ, false));
         }
     }

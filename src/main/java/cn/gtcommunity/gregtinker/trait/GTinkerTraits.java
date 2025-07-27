@@ -7,8 +7,7 @@ import slimeknights.tconstruct.library.traits.AbstractTrait;
 import java.util.Arrays;
 import java.util.List;
 
-public class GTinkerTraits
-{
+public class GTinkerTraits {
 
     public static final AbstractTrait GRAVITATION = new TraitGravitation();
     public static final AbstractTrait UNBREAKABLE = new TraitUnbreakable();
@@ -55,13 +54,11 @@ public class GTinkerTraits
 
     public static final List<Modifier> MODIFIERS = Arrays.asList(
             MODIFIER_GT_ELECTRIC
-            );
+    );
 
-    public GTinkerTraits()
-    {/**/}
+    public GTinkerTraits() {/**/}
 
-    public static void initModifierMaterials()
-    {
+    public static void initModifierMaterials() {
         MODIFIER_GT_ELECTRIC.addItem(MetaItems.LAPOTRON_CRYSTAL.getStackForm(), 1, 1);
     }
 

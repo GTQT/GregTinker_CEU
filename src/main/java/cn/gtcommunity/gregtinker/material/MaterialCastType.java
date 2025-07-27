@@ -10,8 +10,7 @@ import slimeknights.tconstruct.library.Util;
 
 import javax.annotation.Nullable;
 
-public enum MaterialCastType
-{
+public enum MaterialCastType {
     INGOT(0),
     NUGGET(1),
     GEM(2),
@@ -23,14 +22,12 @@ public enum MaterialCastType
     @Nullable
     private ItemStack castStack;
 
-    MaterialCastType(int meta)
-    {
+    MaterialCastType(int meta) {
         this.meta = meta;
         this.castStack = meta < 0 ? ItemStack.EMPTY : null;
     }
 
-    public ItemStack getCast()
-    {
+    public ItemStack getCast() {
         if (castStack == null) {
             Item castItem = ForgeRegistries.ITEMS.getValue(Util.getResource("cast_custom"));
             castStack = castItem != null ? new ItemStack(castItem, 1, meta) : ItemStack.EMPTY;
@@ -38,8 +35,7 @@ public enum MaterialCastType
         return castStack;
     }
 
-    public void registerCasting(String oreKey, Fluid fluid, int amount)
-    {
+    public void registerCasting(String oreKey, Fluid fluid, int amount) {
         ItemStack stack = OreDictUtils.getStack(oreKey, 1);
         if (stack != null) {
             if (this == BLOCK) {

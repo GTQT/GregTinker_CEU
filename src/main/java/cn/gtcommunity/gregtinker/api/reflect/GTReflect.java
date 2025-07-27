@@ -1,6 +1,5 @@
 package cn.gtcommunity.gregtinker.api.reflect;
 
-import cn.gtcommunity.gregtinker.api.reflect.JReflect;
 import cn.gtcommunity.gregtinker.api.utils.MirrorUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -17,8 +16,7 @@ import slimeknights.tconstruct.library.traits.ITrait;
 import javax.annotation.Nullable;
 import java.util.*;
 
-public class GTReflect
-{
+public class GTReflect {
     private static final Map<String, ModContainer> materialRegisteredByMod = MirrorUtils
             .<Map<String, ModContainer>>reflectField(TinkerRegistry.class, "materialRegisteredByMod").get(null);
     private static final Map<String, Map<String, ModContainer>> statRegisteredByMod = MirrorUtils
@@ -45,41 +43,34 @@ public class GTReflect
     private static final MirrorUtils.IField<Map<String, List<ITrait>>> fMaterial_traits = MirrorUtils
             .reflectField(Material.class, "traits");
 
-    public static void overrideMaterialOwnerMod(Material material, Object modObj)
-    {
+    public static void overrideMaterialOwnerMod(Material material, Object modObj) {
         materialRegisteredByMod.put(material.identifier, FMLCommonHandler.instance().findContainerFor(modObj));
     }
 
     @Nullable
-    public static ModContainer getStatOwnerMod(Material material, String statKey)
-    {
+    public static ModContainer getStatOwnerMod(Material material, String statKey) {
         Map<String, ModContainer> statOwners = statRegisteredByMod.get(material.identifier);
         return statOwners != null ? statOwners.get(statKey) : null;
     }
 
-    public static void overrideStatOwnerMod(Material material, String statKey, ModContainer modCont)
-    {
+    public static void overrideStatOwnerMod(Material material, String statKey, ModContainer modCont) {
         statRegisteredByMod.computeIfAbsent(material.identifier, k -> new HashMap<>()).put(statKey, modCont);
     }
 
     @Nullable
-    public static ModContainer getTraitOwnerMod(Material material, ITrait trait)
-    {
+    public static ModContainer getTraitOwnerMod(Material material, ITrait trait) {
         Map<String, ModContainer> traitOwners = traitRegisteredByMod.get(material.identifier);
         return traitOwners != null ? traitOwners.get(trait.getIdentifier()) : null;
     }
 
-    public static void overrideTraitOwnerMod(Material material, ITrait trait, ModContainer modCont)
-    {
+    public static void overrideTraitOwnerMod(Material material, ITrait trait, ModContainer modCont) {
         traitRegisteredByMod.computeIfAbsent(material.identifier, k -> new HashMap<>())
                 .put(trait.getIdentifier(), modCont);
     }
 
-    public static void prioritizeMaterial(Material material)
-    {
-        if (materials instanceof LinkedHashMap)
-        {
-            JReflect.moveLinkedHashMapEntryToFront((LinkedHashMap<String, Material>)materials, material.identifier);
+    public static void prioritizeMaterial(Material material) {
+        if (materials instanceof LinkedHashMap) {
+            JReflect.moveLinkedHashMapEntryToFront((LinkedHashMap<String, Material>) materials, material.identifier);
         }
     }
 
@@ -107,13 +98,11 @@ public class GTReflect
         return alloyRegistry.listIterator();
     }
 
-    public static PriorityQueue<RecipeMatch> getItems(RecipeMatchRegistry recipeRegistry)
-    {
+    public static PriorityQueue<RecipeMatch> getItems(RecipeMatchRegistry recipeRegistry) {
         return fRecipeMatchRecipe_items.get(recipeRegistry);
     }
 
-    public static List<ItemStack> getOreEntries(RecipeMatch.Oredict recipeMatch)
-    {
+    public static List<ItemStack> getOreEntries(RecipeMatch.Oredict recipeMatch) {
         return fOredict_oredictEntry.get(recipeMatch);
     }
 

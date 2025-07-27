@@ -18,7 +18,8 @@ import slimeknights.tconstruct.tools.TinkerTools;
 import java.util.Iterator;
 
 import static cn.gtcommunity.gregtinker.material.GTinkerMaterials.*;
-import static gregtech.api.GTValues.*;
+import static gregtech.api.GTValues.LV;
+import static gregtech.api.GTValues.VA;
 
 public class MachineRecipes {
     private MachineRecipes() {
@@ -154,7 +155,7 @@ public class MachineRecipes {
     }
 
     private static void buildToolPartRecipes(Material material, int tier) {
-        int eut= VA[tier];
+        int eut = VA[tier];
         RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(2, material.getRepresentativeItem()))
                 .notConsumable(GTMetaItems.SHAPE_EXTRUDER_ARROWHEAD)
@@ -301,8 +302,8 @@ public class MachineRecipes {
     }
 
     private static void buildExtractorRecipes(Material material, int tier) {
-        if(material.getFluid()==null)return;
-        int eut= VA[tier];
+        if (material.getFluid() == null) return;
+        int eut = VA[tier];
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(TinkerTools.arrowHead.getItemstackWithMaterial(material))
@@ -450,7 +451,7 @@ public class MachineRecipes {
     }
 
     private static void buildBowstringRecipes(Material material, int tier) {
-        int eut= VA[tier];
+        int eut = VA[tier];
         RecipeMaps.WIREMILL_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(32, material.getRepresentativeItem()))
                 .outputs(TinkerTools.bowString.getItemstackWithMaterial(material))
@@ -465,7 +466,7 @@ public class MachineRecipes {
     }
 
     private static void buildFletchingRecipes(Material material, int tier) {
-        int eut= VA[tier];
+        int eut = VA[tier];
         RecipeMaps.BENDER_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(16, material.getRepresentativeItem()))
                 .outputs(TinkerTools.fletching.getItemstackWithMaterial(material))

@@ -1,6 +1,5 @@
 package cn.gtcommunity.gregtinker.trait;
 
-import cn.gtcommunity.gregtinker.api.utils.GTiLog;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,13 +14,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.ToolHelper;
 
-public class TraitIrradiation extends AbstractTrait
-{
+public class TraitIrradiation extends AbstractTrait {
 
     public boolean update = false;
 
-    public TraitIrradiation()
-    {
+    public TraitIrradiation() {
         super("irradiation", 0xFCF55F);
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -32,21 +29,18 @@ public class TraitIrradiation extends AbstractTrait
 
         if (!(entity instanceof EntityPlayer player)) return;
 
-        if (update && isSelected)
-        {
+        if (update && isSelected) {
             ToolHelper.healTool(tool, 5, player);
             update = false;
         }
     }
 
     @Override
-    public void onHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, boolean isCritical)
-    {
+    public void onHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, boolean isCritical) {
         super.onHit(tool, player, target, damage, isCritical);
         int level = -1;
         PotionEffect potionEffect = target.getActivePotionEffect(MobEffects.WITHER);
-        if (potionEffect != null)
-        {
+        if (potionEffect != null) {
             level = potionEffect.getAmplifier();
         }
 
@@ -58,8 +52,7 @@ public class TraitIrradiation extends AbstractTrait
     }
 
     @SubscribeEvent
-    public void onEntityDead(LivingDeathEvent event)
-    {
+    public void onEntityDead(LivingDeathEvent event) {
         if (!event.getSource().damageType.equals("wither")) return;
 
         if (!event.getEntityLiving().getEntityData().getBoolean("markWither")) return;

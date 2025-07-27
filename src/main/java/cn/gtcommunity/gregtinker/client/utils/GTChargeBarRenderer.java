@@ -11,8 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
-public class GTChargeBarRenderer
-{
+public class GTChargeBarRenderer {
     private static final double BAR_W = 13d;
 
     private static final Color colorShadow = new Color(0, 0, 0, 255);
@@ -22,6 +21,9 @@ public class GTChargeBarRenderer
     private static final Color colorBarRightEnergy = new Color(217, 238, 255, 255);
     private static final Color colorBarLeftDepleted = new Color(122, 0, 0, 255);
     private static final Color colorBarRightDepleted = new Color(255, 27, 27, 255);
+
+    private GTChargeBarRenderer() {
+    }
 
     public static void render(double level, int xPosition, int yPosition, int offset, boolean shadow, Color left, Color right, boolean doDepletedColor) {
         double width = level * BAR_W;
@@ -85,8 +87,5 @@ public class GTChargeBarRenderer
             double level = (double) charge / (double) maxCharge;
             render(level, xPosition, yPosition, renderedDurability ? 2 : 0, true, colorBarLeftEnergy, colorBarRightEnergy, true);
         }
-    }
-
-    private GTChargeBarRenderer() {
     }
 }

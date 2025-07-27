@@ -5,12 +5,10 @@ import net.minecraftforge.fml.common.Loader;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.Material;
 
-public interface RegCondition
-{
+public interface RegCondition {
     boolean isSatisfied();
 
-    class ModLoaded implements RegCondition
-    {
+    class ModLoaded implements RegCondition {
 
         private final String modId;
 
@@ -25,8 +23,7 @@ public interface RegCondition
 
     }
 
-    class OreDictExists implements RegCondition
-    {
+    class OreDictExists implements RegCondition {
 
         private final String oreKey;
 
@@ -41,8 +38,7 @@ public interface RegCondition
 
     }
 
-    class MaterialVisible implements RegCondition
-    {
+    class MaterialVisible implements RegCondition {
 
         private final Material material;
 
@@ -57,8 +53,7 @@ public interface RegCondition
 
     }
 
-    class MaterialCanOverride implements RegCondition
-    {
+    class MaterialCanOverride implements RegCondition {
 
         private final String matId;
 
